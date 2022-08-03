@@ -4,7 +4,14 @@ import { removeTodos } from './remove';
 import { Todo } from './todo';
 import { toggleTodo } from './toggle';
 
-export function createTodoModel(todo: Signal<Todo>) {
+const FALLBACK_TODO: Todo = {
+  id: 'REMOVED',
+  description: 'REMOVED',
+  completed: false,
+};
+
+export function createTodoModel(todoSignal: Signal<Todo | null>) {
+  const todo = memo(() => todoSignal() || FALLBACK_TODO);
   const editing = memo(() => todo() === editedTodo());
 
   return {
@@ -31,3 +38,5 @@ export function createTodoModel(todo: Signal<Todo>) {
     },
   };
 }
+
+export type TodoModel = ReturnType<typeof createTodoModel>;

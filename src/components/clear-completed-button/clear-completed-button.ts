@@ -1,35 +1,36 @@
-import { memo, writable } from 'spred';
-import { h } from 'spred-dom';
+import { memo } from 'spred';
+import { component, h, node, templateFn } from 'spred-dom';
 import { removeCompletedTodos } from '../../model/remove';
 import { completedTodosCount } from '../../model/todos-completed';
 
 interface ClearCompletedButtonProps {
-  text: string;
+  text: () => string;
   onClick: () => any;
 }
 
-export function ClearCompletedButtonView({
-  text,
-  onClick,
-}: ClearCompletedButtonProps) {
-  console.log('render ClearCompletedButtonView');
+export const ClearCompletedButtonView = component(
+  ({ text, onClick }: ClearCompletedButtonProps) => {
+    console.log('render ClearCompletedButtonView');
 
-  return h('button', {
-    className: 'clear-completed',
-    onclick: onClick,
-    textContent: text,
-  });
-}
+    h('button', {
+      className: 'clear-completed',
+      onclick: onClick,
+      textContent: text,
+    });
+  }
+);
 
-export function ClearCompletedButton() {
+export const ClearCompletedButton = component(() => {
   const show = memo(() => completedTodosCount() > 0);
 
-  return memo(() =>
-    show()
-      ? ClearCompletedButtonView({
-          text: 'Clear completed',
-          onClick: removeCompletedTodos,
-        })
-      : null
+  node(
+    () =>
+      show() &&
+      ClearCompletedButtonView({
+        text: () => 'Clear completed',
+        onClick: removeCompletedTodos,
+      })
   );
-}
+});
+
+export const clearCompletedButton = templateFn(ClearCompletedButton);

@@ -1,5 +1,5 @@
 import { memo, Signal } from 'spred';
-import { h } from 'spred-dom';
+import { component, h, node, templateFn } from 'spred-dom';
 import { allTodosCount } from '../../model/todos-all';
 import { allTodosAreCompleted } from '../../model/todos-completed';
 import { toggleAll } from '../../model/toggle';
@@ -10,25 +10,23 @@ interface ToggleProps {
   onToggle: () => any;
 }
 
-export function ToggleView({ checked, shown, onToggle }: ToggleProps) {
-  return h([
-    h('input', {
-      id: 'toggle-all',
-      className: 'toggle-all',
-      type: 'checkbox',
-      checked: checked,
-      onchange: onToggle,
-    }),
+const ToggleLabel = component(() => {
+  h('label', {
+    htmlFor: 'toggle-all',
+  });
+});
 
-    memo(() =>
-      shown()
-        ? h('label', {
-            htmlFor: 'toggle-all',
-          })
-        : null
-    ),
-  ]);
-}
+const ToggleView = component(({ checked, shown, onToggle }: ToggleProps) => {
+  h('input', {
+    id: 'toggle-all',
+    className: 'toggle-all',
+    type: 'checkbox',
+    checked: checked,
+    onchange: onToggle,
+  });
+
+  node(() => shown() && ToggleLabel());
+});
 
 export function Toggle() {
   console.log('render Toggle');
@@ -39,3 +37,5 @@ export function Toggle() {
     shown: memo(() => !!allTodosCount()),
   });
 }
+
+export const toggle = templateFn(Toggle);

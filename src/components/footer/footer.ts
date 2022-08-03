@@ -1,14 +1,16 @@
-import { h } from 'spred-dom';
-import { ClearCompletedButton } from '../clear-completed-button/clear-completed-button';
-import { Filter } from '../filter/filter';
-import { TodoCount } from '../todo-count/todo-count';
+import { component, h, templateFn } from 'spred-dom';
+import { clearCompletedButton } from '../clear-completed-button/clear-completed-button';
+import { filter } from '../filter/filter';
+import { todoCount } from '../todo-count/todo-count';
 
-export function Footer() {
+export const Footer = component(() => {
   console.log('render Footer');
 
-  return h('footer', { className: 'footer' }, [
-    TodoCount(),
-    Filter(),
-    ClearCompletedButton(),
-  ]);
-}
+  h('footer', { className: 'footer' }, () => {
+    todoCount();
+    filter();
+    clearCompletedButton();
+  });
+});
+
+export const footer = templateFn(Footer);

@@ -1,25 +1,25 @@
 import { memo } from 'spred';
-import { h } from 'spred-dom';
+import { component, h, node } from 'spred-dom';
 import { allTodosCount } from '../../model/todos-all';
 import { Footer } from '../footer/footer';
-import { Header } from '../header/header';
-import { Info } from '../info/info';
-import { Main } from '../main/main';
-import { TodoList } from '../todo-list/todo-list';
-import { Toggle } from '../toggle/toggle';
+import { header } from '../header/header';
+import { info } from '../info/info';
+import { todoList } from '../todo-list/todo-list';
+import { toggle } from '../toggle/toggle';
 
-export function App() {
+export const App = component(() => {
   const isFooterShown = memo(() => allTodosCount() > 0);
 
-  return h([
-    h('section', { className: 'todoapp' }, [
-      Header(),
-      Main([
-        Toggle(), //
-        TodoList(),
-      ]),
-      memo(() => (isFooterShown() ? Footer() : null)),
-    ]),
-    Info(),
-  ]);
-}
+  h('section', { className: 'todoapp' }, () => {
+    header();
+
+    h('section', { className: 'main' }, () => {
+      toggle();
+      todoList();
+    });
+
+    node(() => isFooterShown() && Footer());
+  });
+
+  info();
+});

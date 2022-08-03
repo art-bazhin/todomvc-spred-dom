@@ -9,12 +9,11 @@ const todoIds = getLocalStorageIds();
 
 export const [allTodoIds, setAllTodoIds] = signal(todoIds);
 
-export const allTodos = memo(() =>
-  allTodoIds().reduce((acc, cur) => {
-    const todo = getTodo(cur);
-    if (todo) acc.push(todo);
-    return acc;
-  }, [] as Todo[])
+export const allTodos = memo(
+  () =>
+    allTodoIds()
+      .map(getTodo)
+      .filter((el) => el) as Todo[]
 );
 
 export const allTodosCount = memo(() => allTodoIds().length);

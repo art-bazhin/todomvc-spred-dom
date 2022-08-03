@@ -1,4 +1,4 @@
-import { on, signal, batch } from 'spred';
+import { on, signal } from 'spred';
 import { removeTodos } from './remove';
 import { Todo } from './todo';
 
@@ -8,10 +8,8 @@ export const [editedTodo, setEditedTodo] = signal<Todo | null>(null);
 export const [editTodoSignal, editTodo] = signal<EditedTodo>();
 
 on(editTodoSignal, (todo) => {
-  batch(() => {
-    setEditedTodo(null);
-    if (!todo.description) removeTodos([todo.id]);
-  });
+  setEditedTodo(null);
+  if (!todo.description) removeTodos([todo.id]);
 });
 
 (window as any).test = editTodo;

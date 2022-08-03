@@ -9,10 +9,9 @@ window.addEventListener('hashchange', () => {
 });
 
 export const activeFilter = memo<TodoFilter>(() => {
-  const _hash = hash();
-  if (_hash.substr(0, 2) !== '#/') return 'all';
+  if (hash().substring(0, 2) !== '#/') return 'all';
 
-  const filter = _hash.substr(2);
+  const filter = hash().substring(2);
 
   switch (filter) {
     case 'all':

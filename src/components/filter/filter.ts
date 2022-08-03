@@ -1,10 +1,16 @@
-import { h } from 'spred-dom';
-import { FilterButton } from '../filter-button/filter-button';
+import { component, h, templateFn } from 'spred-dom';
+import { filterButton } from '../filter-button/filter-button';
 
-export function Filter() {
-  return h('ul', { className: 'filters' }, [
-    h('li', [FilterButton({ text: 'All', value: 'all' })]),
-    h('li', [FilterButton({ text: 'Active', value: 'active' })]),
-    h('li', [FilterButton({ text: 'Completed', value: 'completed' })]),
-  ]);
-}
+export const Filter = component(() => {
+  h('ul', { className: 'filters' }, () => {
+    h('li', () => filterButton({ text: () => 'All', value: () => 'all' }));
+    h('li', () =>
+      filterButton({ text: () => 'Active', value: () => 'active' })
+    );
+    h('li', () =>
+      filterButton({ text: () => 'Completed', value: () => 'completed' })
+    );
+  });
+});
+
+export const filter = templateFn(Filter);

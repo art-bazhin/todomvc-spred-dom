@@ -1,13 +1,14 @@
 import { writable } from 'spred';
-import { h } from 'spred-dom';
+import { component, h, templateFn } from 'spred-dom';
 import { addTodo } from '../../model/add';
 
 interface HeaderProps {
   onSubmit: (value: string) => any;
 }
 
-export function HeaderView({ onSubmit }: HeaderProps) {
+const HeaderView = component(({ onSubmit }: HeaderProps) => {
   const description = writable('');
+
   const onkeydown = (e: KeyboardEvent) => {
     if (e.key !== 'Enter') return;
     e.preventDefault();
@@ -20,20 +21,18 @@ export function HeaderView({ onSubmit }: HeaderProps) {
     description(e.target.value);
   };
 
-  return h('header', { className: 'header' }, [
-    h('h1', ['todos']), //
+  h('header', { className: 'header' }, () => {
+    h('h1', { textContent: 'todos' });
     h('input', {
-      attrs: {
-        class: 'new-todo',
-        autofocus: true,
-      },
+      className: 'new-todo',
+      autofocus: true,
       placeholder: 'What needs to be done?',
       value: description,
       oninput,
       onkeydown,
-    }),
-  ]);
-}
+    });
+  });
+});
 
 export function Header() {
   console.log('render Header');
@@ -42,3 +41,5 @@ export function Header() {
     onSubmit: addTodo,
   });
 }
+
+export const header = templateFn(Header);

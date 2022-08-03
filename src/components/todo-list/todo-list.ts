@@ -1,22 +1,20 @@
 import { Signal } from 'spred';
-import { h, list } from 'spred-dom';
+import { component, h, list, templateFn } from 'spred-dom';
 import { Todo } from '../../model/todo';
-import { filteredTodos } from '../../model/todos-filtered';
+import { filteredTodoSignals } from '../../model/todos-filtered';
 import { TodoItem } from '../todo-item/todo-item';
 
-export function TodoListView(todos: Signal<Todo[]>) {
-  return h('section', { className: 'main' }, [
-    h('ul', { className: 'todo-list' }, [
-      list(
-        todos,
-        (todo) => TodoItem(todo),
-        (todo) => todo.id
-      ),
-    ]),
-  ]);
-}
+const TodoListView = component((todos: Signal<Signal<Todo | null>[]>) => {
+  h('section', { className: 'main' }, () => {
+    h('ul', { className: 'todo-list' }, () => {
+      list(todos, TodoItem);
+    });
+  });
+});
 
 export function TodoList() {
   console.log('render TodoList');
-  return TodoListView(filteredTodos);
+  return TodoListView(filteredTodoSignals);
 }
+
+export const todoList = templateFn(TodoList);
