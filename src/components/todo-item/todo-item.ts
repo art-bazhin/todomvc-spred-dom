@@ -10,7 +10,7 @@ const EditInput = component<any>(
     onkeydown: (e: KeyboardEvent) => any;
   }) => {
     h('input', {
-      className: 'edit',
+      class: 'edit',
       value: props.description,
       onblur: props.onblur,
       onkeydown: props.onkeydown,
@@ -54,16 +54,16 @@ export const TodoItemView = component(
       editInput.focus();
     };
 
-    h('li', { className: liClass }, () => {
-      h('div', { className: 'view' }, () => {
+    h('li', { class: liClass }, () => {
+      h('div', { class: 'view' }, () => {
         h('input', {
-          className: 'toggle',
+          class: 'toggle',
           type: 'checkbox',
           onchange: toggle,
           checked: completed,
         });
-        h('label', { ondblclick, textContent: description });
-        h('button', { onclick: remove, className: 'destroy' });
+        h('label', { ondblclick, text: description });
+        h('button', { onclick: remove, class: 'destroy' });
       });
       node(editInput);
     });

@@ -13,9 +13,9 @@ export const ClearCompletedButtonView = component(
     console.log('render ClearCompletedButtonView');
 
     h('button', {
-      className: 'clear-completed',
+      class: 'clear-completed',
       onclick: onClick,
-      textContent: text,
+      text,
     });
   }
 );

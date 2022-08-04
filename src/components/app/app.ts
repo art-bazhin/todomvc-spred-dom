@@ -10,10 +10,10 @@ import { toggle } from '../toggle/toggle';
 export const App = component(() => {
   const isFooterShown = memo(() => allTodosCount() > 0);
 
-  h('section', { className: 'todoapp' }, () => {
+  h('section', { class: 'todoapp' }, () => {
     header();
 
-    h('section', { className: 'main' }, () => {
+    h('section', { class: 'main' }, () => {
       toggle();
       todoList();
     });

@@ -19,7 +19,7 @@ const ToggleLabel = component(() => {
 const ToggleView = component(({ checked, shown, onToggle }: ToggleProps) => {
   h('input', {
     id: 'toggle-all',
-    className: 'toggle-all',
+    class: 'toggle-all',
     type: 'checkbox',
     checked: checked,
     onchange: onToggle,

@@ -21,10 +21,10 @@ const HeaderView = component(({ onSubmit }: HeaderProps) => {
     description(e.target.value);
   };
 
-  h('header', { className: 'header' }, () => {
-    h('h1', { textContent: 'todos' });
+  h('header', { class: 'header' }, () => {
+    h('h1', { text: 'todos' });
     h('input', {
-      className: 'new-todo',
+      class: 'new-todo',
       autofocus: true,
       placeholder: 'What needs to be done?',
       value: description,

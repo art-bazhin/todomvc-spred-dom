@@ -8,8 +8,8 @@ const TodoCountView = component((count: Signal<number>) => {
     isPlural() ? ' items left' : ' item left'
   );
 
-  return h('span', { className: 'todo-count' }, () => {
-    h('strong', { textContent: () => count() + '' });
+  return h('span', { class: 'todo-count' }, () => {
+    h('strong', { text: () => count() + '' });
     text(itemsLeftString);
   });
 });

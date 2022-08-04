@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "spred": "^0.18.6",
-    "spred-dom": "^0.5.9",
+    "spred-dom": "^0.5.10",
     "todomvc-app-css": "^2.4.1"
   }
 }

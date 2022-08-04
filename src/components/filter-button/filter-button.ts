@@ -16,8 +16,8 @@ const FilterButtonView = component(
   ({ href, name, selected }: FilterButtonModel) => {
     h('a', {
       href,
-      className: () => (selected() ? 'selected' : ''),
-      textContent: name,
+      class: () => (selected() ? 'selected' : ''),
+      text: name,
     });
   }
 );

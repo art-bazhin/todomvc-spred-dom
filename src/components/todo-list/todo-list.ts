@@ -5,8 +5,8 @@ import { filteredTodoSignals } from '../../model/todos-filtered';
 import { TodoItem } from '../todo-item/todo-item';
 
 const TodoListView = component((todos: Signal<Signal<Todo | null>[]>) => {
-  h('section', { className: 'main' }, () => {
-    h('ul', { className: 'todo-list' }, () => {
+  h('section', { class: 'main' }, () => {
+    h('ul', { class: 'todo-list' }, () => {
       list(todos, TodoItem);
     });
   });

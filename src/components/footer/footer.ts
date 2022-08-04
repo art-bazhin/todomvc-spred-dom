@@ -6,7 +6,7 @@ import { todoCount } from '../todo-count/todo-count';
 export const Footer = component(() => {
   console.log('render Footer');
 
-  h('footer', { className: 'footer' }, () => {
+  h('footer', { class: 'footer' }, () => {
     todoCount();
     filter();
     clearCompletedButton();

@@ -2,7 +2,7 @@ import { component, h, templateFn } from 'spred-dom';
 import { filterButton } from '../filter-button/filter-button';
 
 export const Filter = component(() => {
-  h('ul', { className: 'filters' }, () => {
+  h('ul', { class: 'filters' }, () => {
     h('li', () => filterButton({ text: () => 'All', value: () => 'all' }));
     h('li', () =>
       filterButton({ text: () => 'Active', value: () => 'active' })
