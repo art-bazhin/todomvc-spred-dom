@@ -1,7 +1,9 @@
 import { memo } from 'spred';
 import { component, h, node, templateFn } from 'spred-dom';
-import { removeCompletedTodos } from '../../model/remove';
-import { completedTodosCount } from '../../model/todos-completed';
+import {
+  completedTodosCount,
+  removeCompetedTodos,
+} from '../../model/todos-completed';
 
 interface ClearCompletedButtonProps {
   text: () => string;
@@ -28,7 +30,7 @@ export const ClearCompletedButton = component(() => {
       show() &&
       ClearCompletedButtonView({
         text: () => 'Clear completed',
-        onClick: removeCompletedTodos,
+        onClick: removeCompetedTodos,
       })
   );
 });

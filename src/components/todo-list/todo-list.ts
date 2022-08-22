@@ -1,7 +1,7 @@
 import { Signal } from 'spred';
 import { component, h, list, templateFn } from 'spred-dom';
 import { Todo } from '../../model/todo';
-import { filteredTodoSignals } from '../../model/todos-filtered';
+import { filteredTodos } from '../../model/todos-filtered';
 import { TodoItem } from '../todo-item/todo-item';
 
 const TodoListView = component((todos: Signal<Signal<Todo | null>[]>) => {
@@ -14,7 +14,7 @@ const TodoListView = component((todos: Signal<Signal<Todo | null>[]>) => {
 
 export function TodoList() {
   console.log('render TodoList');
-  return TodoListView(filteredTodoSignals);
+  return TodoListView(filteredTodos);
 }
 
 export const todoList = templateFn(TodoList);
