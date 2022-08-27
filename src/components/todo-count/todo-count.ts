@@ -9,7 +9,7 @@ const TodoCountView = component((count: Signal<number>) => {
   );
 
   return h('span', { class: 'todo-count' }, () => {
-    h('strong', { text: () => count() + '' });
+    h('strong', { text: count as any });
     text(itemsLeftString);
   });
 });

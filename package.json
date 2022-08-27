@@ -15,8 +15,8 @@
     "typescript": "^4.7"
   },
   "dependencies": {
-    "spred": "^0.21.0",
-    "spred-dom": "^0.5.13",
+    "spred": "^0.23.2",
+    "spred-dom": "^0.6.0",
     "todomvc-app-css": "^2.4.1"
   }
 }
